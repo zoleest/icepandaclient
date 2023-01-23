@@ -1,0 +1,5 @@
+{
+  "server_address":"http://localhost:3000",
+  "listing_per_row_lg": 6,
+  "listing_per_row_md": 3
+}

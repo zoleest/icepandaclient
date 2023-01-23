@@ -1,0 +1,40 @@
+{
+  "routes": {
+    "home": {
+      "title": "Kezdőlap",
+      "path": "/"
+    },
+    "login": {
+      "title": "Bejelentkezés",
+      "path": "/bejelentkezes"
+    },
+    "characters": {
+      "title": "Karakterek",
+      "path": "/karakterek",
+      "subpath": {
+        "profile": "/profil"
+      }
+    }
+  },
+  "header": {
+    "home": "Kezdőlap",
+    "message_wall": "Üzenőfal",
+    "characters": "Karakterek",
+    "login": "Bejelentkezés",
+    "logout": "Kijelentkezés"
+  },
+  "pages": {
+    "login": {
+      "login_text": "Bejelentkezés",
+      "error": "Hiba!",
+      "username_placeholder": "Felhasználónév",
+      "password_placeholder": "Jelszó",
+      "submit_button": "Bejelentkezés",
+      "forgot_button": "Elfelejtett jelszó",
+      "registration_button": "Regisztráció"
+    },
+    "characters": {
+      "heading_text": "Az oldal játékosainak karakterei"
+    }
+  }
+}
