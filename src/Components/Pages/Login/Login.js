@@ -25,7 +25,7 @@ async function submitLogin(e, userData, setUserData, setErrorData, navigate) {
 
              localStorage.setItem('userData', JSON.stringify(results.data));
              setUserData(results.data);
-            setErrorData({});
+             setErrorData({});
 
         }else{
 
@@ -60,7 +60,7 @@ function Login() {
                             <h2 className="text-light">
                                 {languageData.pages.login.login_text}
                             </h2>
-                            <h4 className={errorData=== undefined?'d-none':'d-inline'}> <span className="text-danger">{languageData.pages.login.error}</span><span className="text-light">{errorData!== undefined?errorData.error:""}</span></h4>
+                            <h4 className={errorData=== undefined?'d-none':'d-inline'}> <span className="text-danger">{languageData.pages.login.error}</span><span className="text-light">{errorData!== undefined?languageData.pages.login[errorData.error]:""}</span></h4>
                             <form onSubmit={async function(e){submitLogin(e,userData,setUserData, setErrorData, navigate)}} method="post">
                                 <input className="form-control mt-3" type="text" name="username"
                                        placeholder={languageData.pages.login.username_placeholder} required />

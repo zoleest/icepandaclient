@@ -9,7 +9,7 @@ import language from './Languages/hu-hu.json'
 import Content from './Components/Content';
 import Login from './Components/Pages/Login/Login'
 import Characters from './Components/Pages/Characters/Characters'
-
+import SingleCharacter from './Components/Pages/Characters/Single-character'
 
 
 function App() {
@@ -18,13 +18,18 @@ function App() {
     const [languageData, setLanguageData] = useState(LanguageDataDefaults.value);
 
     const pages = [
-        {
+        {   /*Login page*/
             name: language.routes.login.title, path:
             language.routes.login.path, element: <Login/>
         },
-        {
+        {   /*All characters*/
             name: language.routes.characters.title, path:
             language.routes.characters.path, element: <Characters/>
+        },
+        {   /*Character profile*/
+            name: language.routes.characters.title,
+            path: language.routes.characters.path + "/:id" + language.routes.characters.subpath.profile,
+            element: <SingleCharacter/>
         }
     ];
 

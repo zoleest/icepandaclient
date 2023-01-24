@@ -46,8 +46,12 @@ function createCharactersButton(data, userData, setUserData, languageData) {
             <ul className="dropdown-menu">
                 {data.charactersData.map((character, index) => {
                     return <li key={index}
-                               ><a className={(character.character_name_slug===data.activeCharacter.character_name_slug?'active-character':'') + " dropdown-item"} href="#" onClick={()=>setCharacter(character.character_name_slug, userData, setUserData)}>{character.character_name}</a></li>
+                               ><a className={(character.character_name_slug===data.activeCharacter.character_name_slug?'text-danger':'') + " dropdown-item"} href="#" onClick={()=>setCharacter(character.character_name_slug, userData, setUserData)}>{character.character_name}</a></li>
                 })}
+                <li>
+                    <hr className="dropdown-divider"/>
+                </li>
+                <li> <a href="/karakterek" className="dropdown-item">Összes karakter</a></li>
             </ul>
         </li>);
     }

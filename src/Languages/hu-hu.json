@@ -31,10 +31,33 @@
       "password_placeholder": "Jelszó",
       "submit_button": "Bejelentkezés",
       "forgot_button": "Elfelejtett jelszó",
-      "registration_button": "Regisztráció"
+      "registration_button": "Regisztráció",
+      "loginUsernamePasswordError": "Felhasználónév és jelszó nem található!"
     },
     "characters": {
-      "heading_text": "Az oldal játékosainak karakterei"
+      "heading_text": "Az oldal játékosainak karakterei",
+      "loading_error": "A játékosok betöltése pillanatnyilag nem lehetséges, próbáldd meg később!",
+      "subpage": {
+        "profile": {
+          "character_birthday_date": "Születésnap",
+          "character_species": "Faj",
+          "character_sex": "Neme",
+          "character_sexuality": "Szexualitás",
+          "character_weapons": "Fegyverek",
+          "character_abilities": "Képességek",
+          "character_story": "Történet",
+          "character_interests": "Érdeklődése",
+          "character_relationships": "Kapcsolatai",
+          "character_properties": "Tulajdonai"
+
+        }
+      }
     }
+  },
+  "misc": {
+    "error": "Hiba"
+  },
+  "errors": {
+    "no_connection_error": "Nincs kapcsolat a szerverrel!"
   }
 }
