@@ -1,4 +1,4 @@
-import {LanguageData} from "../../../Contexts/Language-context";
+import {LanguageData} from "../../../../Contexts/Language-context";
 import {useContext} from "react";
 import parse from 'html-react-parser';
 

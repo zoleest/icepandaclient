@@ -1,4 +1,4 @@
-import {LanguageData} from "../../../Contexts/Language-context";
+import {LanguageData} from "../../../../Contexts/Language-context";
 import {useContext} from "react";
 
 function SingleCharacterSimpleParagraphs(props){
@@ -7,7 +7,7 @@ function SingleCharacterSimpleParagraphs(props){
 
     return(<div>
         <h4>{languageData.pages.characters.subpage.profile[props.value.fieldName]}</h4>
-        <p>{props.value.fieldContent}</p>
+        <p>{languageData.pages.characters.subpage.profile[props.value.fieldContent]!==undefined? languageData.pages.characters.subpage.profile[props.value.fieldContent]: props.value.fieldContent }</p>
     </div>);
 }
 export default SingleCharacterSimpleParagraphs;

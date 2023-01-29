@@ -1,7 +1,9 @@
 {
+  "site_name": "Szerepjáték.net: Az apokalipszis",
   "server_address":"http://localhost:3000",
   "listing_per_row_lg": 6,
   "listing_per_row_md": 3,
   "profile_simply_render": ["character_birthday_date", "character_species", "character_sexuality", "character_sex"],
-  "profile_complex_render":["character_story", "character_interests"]
+  "profile_complex_render":["character_story", "character_interests"],
+  "weapons_and_abilities_max_count": 6
 }

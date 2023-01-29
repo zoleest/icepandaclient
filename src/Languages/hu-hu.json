@@ -12,7 +12,18 @@
       "title": "Karakterek",
       "path": "/karakterek",
       "subpath": {
-        "profile": "/profil"
+        "profile": "/profil",
+        "edit": "/szerkesztes",
+        "new": "/uj-karakter"
+      }
+    },
+    "locations":{
+      "title": "Helyszínek",
+      "path": "/helyszinek",
+      "subpath": {
+        "public": "/publikus",
+        "homes": "/otthonok",
+        "private": "/privat"
       }
     }
   },
@@ -21,7 +32,8 @@
     "message_wall": "Üzenőfal",
     "characters": "Karakterek",
     "login": "Bejelentkezés",
-    "logout": "Kijelentkezés"
+    "logout": "Kijelentkezés",
+    "locations": "Helyszínek"
   },
   "pages": {
     "login": {
@@ -48,16 +60,67 @@
           "character_story": "Történet",
           "character_interests": "Érdeklődése",
           "character_relationships": "Kapcsolatai",
-          "character_properties": "Tulajdonai"
+          "character_properties": "Tulajdonai",
 
-        }
+          "heterosexual": "Heteroszexuális",
+          "homosexual": "Homoszexuális",
+          "bisexual": "Biszexuális",
+          "asexual": "Aszexuális",
+          "other": "Egyéb",
+
+          "male": "Férfi",
+          "female": "Nő"
+
+        },
+        "edit": {
+          "character_name": "Név",
+          "character_nicknames": "Becenevek",
+          "character_birthday_date": "Születésnap",
+          "character_species": "Faj",
+          "character_sex": "Neme",
+          "character_sexuality": "Szexualitás",
+          "character_weapons": "Fegyverek",
+          "character_abilities": "Képességek",
+          "character_story": "Történet",
+          "character_interests": "Érdeklődése",
+          "character_relationships": "Kapcsolatai",
+          "character_properties": "Tulajdonai",
+          "character_profile_picture": "Profilkép",
+          "weapon_name": "Fegyver neve",
+          "weapon_description": "Fegyver leírása",
+          "ability_name": "Képesség neve",
+          "ability_description": "Képesség leírása",
+
+          "heterosexual": "Heteroszexuális",
+          "homosexual": "Homoszexuális",
+          "bisexual": "Biszexuális",
+          "asexual": "Aszexuális",
+          "other": "Egyéb",
+
+          "male": "Férfi",
+          "female": "Nő",
+          "choose": "Válassz!"
+
+                  }
       }
+    },
+    "locations": {
+      "heading_text": "Az oldal helyszínei",
+      "loading_error": "A helyszínek betöltése pillanatnyilag nem lehetséges, próbáldd meg később!"
     }
+
   },
   "misc": {
     "error": "Hiba"
   },
   "errors": {
-    "no_connection_error": "Nincs kapcsolat a szerverrel!"
+    "no_connection_error": "Nincs kapcsolat a szerverrel!",
+    "user_not_logged_in": "Nem vagy bejelentkezve! Jelentkezz be a folytatáshoz!",
+    "user_no_permission": "Jelen pillanatban nincs hozzáférésed ehhez a lehetőséghez! Ha szerinted hiba történt, jelezd az adminisztrátor felé",
+    "birthday_error": "Nem megfelelő születési dátum!",
+    "sexuality_error": "Nem megfelelő szexualitás lett kiválasztva!",
+    "sex_error": "Nem megfelelő nem lett kiválasztva!",
+    "existing_character": "Már létezik ilyen nevű karakter. Próbálkozz más névvel!",
+    "profile_picture_error": "Nem megfelelő profikép! Kérlek cseréld le, és nyomj a mentés gombra!"
   }
 }

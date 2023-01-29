@@ -1,0 +1,13 @@
+.characters-dropdown{
+  min-width: max-content;
+  .dropdown-item{
+    display: inline-block;
+    width: auto;
+  }
+  span{
+    display: inline-block;
+    float:right;
+    cursor: pointer;
+  }
+}
+

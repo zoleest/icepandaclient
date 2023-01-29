@@ -36,22 +36,22 @@ function createCharactersButton(data, userData, setUserData, languageData) {
 
     if (data.error !== undefined || data.charactersData === undefined) {
 
-        return (<li className="nav-item" ><a className="nav-link" aria-current="page" href="/karakterek">{languageData.header.characters}</a></li>);
+        return (<li className="nav-item" ><a className="nav-link" aria-current="page" href={languageData.routes.characters.path}>{languageData.header.characters}</a></li>);
     } else {
-        return (<li className="nav-item dropdown">
+        return (<li className="nav-item dropdown" >
             <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                aria-expanded="false">
                 {languageData.header.characters}
             </a>
-            <ul className="dropdown-menu">
+            <ul className="characters-dropdown dropdown-menu">
                 {data.charactersData.map((character, index) => {
                     return <li key={index}
-                               ><a className={(character.character_name_slug===data.activeCharacter.character_name_slug?'text-danger':'') + " dropdown-item"} href="#" onClick={()=>setCharacter(character.character_name_slug, userData, setUserData)}>{character.character_name}</a></li>
+                    ><a className={(character.character_name_slug===userData.activeCharacter.character_name_slug?'text-danger':'') + " dropdown-item"} href={languageData.routes.characters.path + "/" + character.character_name_slug+ languageData.routes.characters.subpath.profile} >{character.character_name}</a> <span className="pe-2 align-middle pt-1 text-success" onClick={(event)=>{event.stopPropagation();setCharacter(character.character_name_slug, userData, setUserData)}}>&#10148;</span></li>
                 })}
                 <li>
                     <hr className="dropdown-divider"/>
                 </li>
-                <li> <a href="/karakterek" className="dropdown-item">Összes karakter</a></li>
+                <li> <a href={languageData.routes.characters.path} className="dropdown-item">Összes karakter</a></li>
             </ul>
         </li>);
     }
@@ -63,7 +63,7 @@ function createLoginLogoutButton(userData, setUserData, languageData){
     if(userData.loggedIn){
         return(<li className="nav-item"><a className="nav-link link-danger" href="#" onClick={async function(){deleteSession(setUserData)}}>{languageData.header.logout}</a></li>);
     }else{
-        return(<li className="nav-item"><a className="nav-link link-danger" href="/bejelentkezes">{languageData.header.login}</a></li>);
+        return(<li className="nav-item"><a className="nav-link link-danger" href={languageData.routes.login.path}>{languageData.header.login}</a></li>);
     }
 }
 
@@ -89,9 +89,27 @@ function Header() {
                                 <ul className="navbar-nav">
                                 <li className="nav-item"> <a className="nav-link active" aria-current="page" href="/">{languageData.header.home}</a></li>
                                 <li className="nav-item"><a className="nav-link" href="#">{languageData.header.message_wall}</a></li>
-
                                     {createCharactersButton(userData || {error: "user_not_logged_in"}, userData, setUserData, languageData)}
+                                    <li className="nav-item dropdown" >
+                                        <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                           aria-expanded="false">
+                                            {languageData.header.locations}
+                                        </a>
+                                        <ul className="characters-dropdown dropdown-menu">
+
+                                            <li> <a href={languageData.routes.locations.path + languageData.routes.locations.subpath.public + "/1/"} className="dropdown-item">Publikus helyszínek</a></li>
+                                            <li> <a href={languageData.routes.locations.path + languageData.routes.locations.subpath.homes + "/1/"} className="dropdown-item">Otthonok</a></li>
+                                            <li>
+                                                <hr className="dropdown-divider"/>
+                                            </li>
+                                            <li> <a href={languageData.routes.locations.path + languageData.routes.locations.subpath.private + "/1/"} className="dropdown-item">Privát helyszínek</a></li>
+
+                                        </ul>
+                                    </li>
+
                                     {createLoginLogoutButton(userData, setUserData, languageData)}
+
+
                                 </ul>
                             </div>
                         </div>

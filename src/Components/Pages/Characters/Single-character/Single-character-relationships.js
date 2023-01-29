@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {LanguageData} from "../../../Contexts/Language-context";
+import {LanguageData} from "../../../../Contexts/Language-context";
 
 function SingleCharacterRelationships(props){
 

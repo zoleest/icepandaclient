@@ -4,9 +4,6 @@ import {LanguageData} from "../../Contexts/Language-context";
 import ListingTile from "./ListingTile";
 
 
-
-import config from "../../config.json";
-
 function Listing(props){
 
     const {languageData} = useContext(LanguageData);

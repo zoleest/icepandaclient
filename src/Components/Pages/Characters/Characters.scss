@@ -1,3 +1,18 @@
 .property_picture{
   object-fit: cover;
 }
+
+
+.ck-editor__editable_inline {
+  min-height: 20vh;
+}
+
+div .reactEasyCrop_Container{
+  height: 30vh;
+  position: relative;
+}
+
+.zoom-range{
+  display: block;
+  width: 100%;
+}

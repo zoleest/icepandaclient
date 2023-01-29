@@ -1,0 +1,10 @@
+@import '../../variables';
+
+.character{
+  max-height: $character-max-height; max-width: 100%;
+}
+
+iframe{
+  width: $youtube-width;
+  height: $youtube-width* $youtube-height-multiplier;
+}

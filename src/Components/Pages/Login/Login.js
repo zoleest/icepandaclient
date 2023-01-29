@@ -9,39 +9,15 @@ import config from "../../../config.json";
 
 
 import './Login.scss';
-
-async function submitLogin(e, userData, setUserData, setErrorData, navigate) {
-
-    e.preventDefault();
-
-    if(userData.loggedIn === undefined) {
-        let results = await axios.post(config.server_address +'/login', {
-            username: e.target.username.value,
-            password: e.target.password.value
-        }, {withCredentials: true});
+import {Helmet} from "react-helmet";
 
 
-        if(results.data.error === undefined){
-
-             localStorage.setItem('userData', JSON.stringify(results.data));
-             setUserData(results.data);
-             setErrorData({});
-
-        }else{
-
-
-            setErrorData({error: results.data.error});
-
-        }
-
-
-    }else{
-        navigate('/');
-    }
-}
 
 
 function Login() {
+
+
+
 
 
 
@@ -50,9 +26,46 @@ function Login() {
         const {languageData} = useContext(LanguageData);
         const navigate = useNavigate();
 
+    async function submitLogin(e) {
+
+        e.preventDefault();
+
+        if(userData.loggedIn === undefined) {
+            try{   let results = await axios.post(config.server_address +'/login', {
+                username: e.target.username.value,
+                password: e.target.password.value
+            }, {withCredentials: true});
+
+                localStorage.setItem('userData', JSON.stringify(results.data));
+                setUserData(results.data);
+
+                if(results.data.redirectTo !== undefined && results.data.redirectTo === "new_character") navigate(languageData.routes.characters.path + languageData.routes.characters.subpath.new);
+
+            }catch(error){
+
+                if (error.response === undefined) throw TypeError("no_connection_error");
+
+                throw TypeError(error.response.data.error);
+            }
+
+
+
+
+
+
+
+        }else{
+            navigate('/');
+        }
+    }
+
+
         if(!userData.loggedIn){
 
             return(<div className="container-fluid h-100">
+                <Helmet>
+                    <title>{config.site_name + ' - ' + languageData.routes.login.title}</title>
+                </Helmet>
                 <div className="row align-items-center h-100 pt-lg-0 pt-5 login-form-container">
                     <div className="col-12 col-lg-3 d-none d-lg-block"></div>
                     <div className="col-12 col-lg-6 align-middle ">
@@ -83,6 +96,7 @@ function Login() {
                     </div>
                     <div className="col-12 col-lg-3 d-none d-lg-block"></div>
                 </div>
+
             </div>);
 
         }else{

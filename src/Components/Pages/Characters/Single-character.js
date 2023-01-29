@@ -4,17 +4,18 @@ import {useParams} from 'react-router';
 import config from '../../../config.json';
 import {useContext} from "react";
 import {LanguageData} from "../../../Contexts/Language-context";
+import {UserData} from "../../../Contexts/User-context"
 import {useAsync, IfFulfilled, IfRejected, IfPending} from "react-async";
 import { useNavigate } from "react-router-dom"
 
 import Loading from "../../Loading/Loading";
 import Error from "../../Error/Error";
 
-import SingleCharacterSimpleParagraphs from "./Single-character-simple-paragraphs";
-import SingleCharacterComplexListElements from "./Single-character-complex-list-elements";
-import SingleCharacterComplexParagraphs from "./Single-character-complex-paragraphs";
-import SingleCharacterRelationships from "./Single-character-relationships";
-import SingleCharacterProperties from "./Single-character-properties";
+import SingleCharacterSimpleParagraphs from "./Single-character/Single-character-simple-paragraphs";
+import SingleCharacterComplexListElements from "./Single-character/Single-character-complex-list-elements";
+import SingleCharacterComplexParagraphs from "./Single-character/Single-character-complex-paragraphs";
+import SingleCharacterRelationships from "./Single-character/Single-character-relationships";
+import SingleCharacterProperties from "./Single-character/Single-character-properties";
 
 
 async function getCharacterData(props) {
@@ -40,6 +41,7 @@ function SingleCharacter() {
 
     let {id} = useParams();
     const {languageData} = useContext(LanguageData);
+    const {userData} = useContext(UserData);
     const navigate = useNavigate();
 
     let state = useAsync({promiseFn: getCharacterData, id: id, navigate: navigate, languageData: languageData});
@@ -73,40 +75,38 @@ function SingleCharacter() {
                                         title={data.character.character_name_slug}/></div>
                                 <h2>{data.character.character_nicknames}</h2>
                                 <h3 className="text-warning">{data.character.character_xp} XP</h3>
+                                {data.character.character_name_slug === userData.activeCharacter.character_name_slug?<a href={languageData.routes.characters.path + "/" + data.character.character_name_slug  + languageData.routes.characters.subpath.edit}><button className="btn btn-info w-100 mb-3">SZERKESZTÉS</button></a>:""}
                                 <div className="col-3 d-none d-lg-block"></div>
                                 <div className="text-start ">
-                                    {Object.keys(data.character).filter(key => {
-                                        return config.profile_simply_render.includes(key)
+
+                                    {data.fields.filter(field => {
+                                        return field.fieldType === 'simple-paragraphs' && !field.fieldFeatured
                                     }).map((key, index) => {
                                         return <SingleCharacterSimpleParagraphs
-                                            value={{fieldContent: data.character[key], fieldName: key}} key={index}/>
+                                            value={{fieldContent: data.character[key.fieldName], fieldName: key.fieldName}} key={index}/>
                                     })}
 
-                                    <h4>{languageData.pages.characters.subpage.profile.character_weapons}</h4>
-                                    <ul>
-                                        {data.character.character_weapons.map((weapon, index) => {
-                                            return <SingleCharacterComplexListElements key={index} value={{
-                                                fieldName: weapon.weapon_name,
-                                                fieldDescription: weapon.weapon_description
-                                            }}/>
-                                        })}
-                                    </ul>
 
-                                    <h4>{languageData.pages.characters.subpage.profile.character_abilities}</h4>
-                                    <ul>
-                                        {data.character.character_abilities.map((ability, index) => {
-                                            return <SingleCharacterComplexListElements key={index} value={{
-                                                fieldName: ability.ability_name,
-                                                fieldDescription: ability.ability_description
-                                            }}/>
-                                        })}
-                                    </ul>
 
-                                    {Object.keys(data.character).filter(key => {
-                                        return config.profile_complex_render.includes(key)
+                                        {data.fields.filter(field => {
+                                            return field.fieldType === 'complex-list-elements'
+                                        }).map((item, index) => {
+
+
+
+                                           return(<div key={index}> <h3>{languageData.pages.characters.subpage.profile[item.fieldName]}</h3> <ul> { data.character[item.fieldName].map((fieldData, index) =>
+                                            { return <SingleCharacterComplexListElements key={index} value={{
+                                                    fieldName: fieldData[Object.keys(fieldData)[0]],
+                                                    fieldDescription: fieldData[Object.keys(fieldData)[1]]
+                                                }}/>
+                                            }) }</ul></div>) })}
+
+
+                                                                      {data.fields.filter(field => {
+                                        return field.fieldType === 'complex-paragraphs'
                                     }).map((key, index) => {
                                         return <SingleCharacterComplexParagraphs
-                                            value={{fieldContent: data.character[key], fieldName: key}} key={index}/>
+                                            value={{fieldContent: data.character[key.fieldName], fieldName: key.fieldName}} key={index}/>
                                     })}
 
                                 </div>
